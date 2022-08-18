@@ -1,2 +1,3 @@
-# djcart
+# DJCart
+
 Shopping cart solution
