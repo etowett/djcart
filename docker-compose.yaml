@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  app:
+    image: ektowett/djcart:latest
+    working_dir: /usr/src/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - ENV=local
+      - DEBUG=1
+      - ALLOWED_HOSTS=*
+      - SECRET_KEY='django-insecure-3#u=s27+-qa(me*hjw-iqt2&hbj%u+t9@^!z@ddc6w_@w7fibi'
+      - APP_PATH=/var/www/djcart
+      - DATABASE_DB=djcart
+      - DATABASE_USER=djcart
+      - DATABASE_PASSWORD=djcart
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - djcart_net
+
+  db:
+    image: postgres:14.5-alpine
+    # ports:
+    #   - 5432:5432
+    volumes:
+      - djcart_pg:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=djcart
+      - POSTGRES_USER=djcart
+      - POSTGRES_DB=djcart
+    networks:
+      - djcart_net
+
+volumes:
+  djcart_pg:
+  djcart_app:
+
+networks:
+  djcart_net:
