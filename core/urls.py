@@ -7,6 +7,6 @@ app_name = 'core'
 
 
 urlpatterns = [
-    url('', views.home, name='home'),
+    url(r'^$', views.home, name='home'),
     url('dashboard', views.dashboard, name='dashboard'),
 ]

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Products</h2>
+  {{ message }}
+  <div class="row products">
+    {% if products %}
+        {% for product in products %}
+        <div class="product">
+            <p>{{ product.name }} - KES {{ product.price }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No products</p>
+    {% endif %}
+  </div>
+{% endblock %}
